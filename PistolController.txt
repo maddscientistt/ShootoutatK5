@@ -1,0 +1,35 @@
+using UnityEngine;
+using System.Collections;
+
+public class Pistol05Controller : MonoBehaviour
+{
+    public Transform weaponHold;
+    public Pistol05 startingPistol05;
+    Pistol05 equippedPistol05;
+
+    void Start()
+    {
+        if (startingPistol05 != null)
+        {
+            EquipPistol05(startingPistol05);
+        }
+    }
+
+    public void EquipPistol05(Pistol05 gunToEquip)
+    {
+        if (equippedPistol05 != null)
+        {
+            Destroy(equippedPistol05.gameObject);
+        }
+        equippedPistol05 = Instantiate(gunToEquip, weaponHold.position, weaponHold.rotation) as Pistol05;
+        equippedPistol05.transform.parent = weaponHold;
+    }
+    public void Shoot()
+    {
+        if (equippedPistol05 != null)
+        {
+            equippedPistol05.Shoot();
+        }
+    }
+
+}
